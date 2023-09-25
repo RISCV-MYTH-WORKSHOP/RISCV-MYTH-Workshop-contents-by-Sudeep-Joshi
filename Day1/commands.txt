@@ -1,0 +1,6 @@
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
+
+spike pk sum1ton.o
+
+riscv64-unknown-elf-objdump -d sum1ton.o | less
+
