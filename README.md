@@ -1,4 +1,4 @@
-# RISC-V_MYTH_Workshopspike pk sum1ton.o
+# RISC-V_MYTH_Workshop
 "Microprocessor for You in Thirty Hours" Workshop, offered by for [VLSI System Design (VSD)](https://www.vlsisystemdesign.com/) and [Redwood EDA](https://www.redwoodeda.com/).
 Submitted by [Sudeep Joshi](https://www.lindedin.com/in/sudeep-joshi-569951207/).
 
