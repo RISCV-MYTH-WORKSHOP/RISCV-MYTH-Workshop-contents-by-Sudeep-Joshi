@@ -96,3 +96,25 @@ vvp -N testbench.vvp
 Output:
 ![picorv](images/picorv.png)
 
+# Day 3 - Introduction Digital Logic with TL-Verilog and Makerchip
+TL-Verilog, which stands for Transaction-Level Verilog, is an extension of the traditional Verilog hardware description language. It was developed to simplify and streamline the process of designing digital circuits by introducing higher-level abstractions and more concise syntax.
+### ![Arithmetic and Logical Operation in TL-Verilog (simple ALU)](https://www.makerchip.com/sandbox/0kRfnhVBk/03lhy7)
+![alu](images/arithmetic_logic.jpg]
+![aluw](images/arithmetic_logic_waveform.jpg)
+### ![Pipelined Distance Calculator](https://www.makerchip.com/sandbox/0kRfnhVBk/02RhBV#)
+![dist](images/distance.jpg)
+![distw](images/distance_waveform.jpg)
+### ![Fibonacci Sequence and Counter](https://www.makerchip.com/sandbox/0kRfnhVBk/048hD7)
+![fc](images/fibo_counter.jpg)
+![fcw](images/fibo_count_waveform.jpg)
+### ![Calculator](https://www.makerchip.com/sandbox/0kRfnhVBk/058hX6)
+![cal](images/calculator.jpg)
+![calw](images/calculator_waveform.jpg)
+
+# Day 4 & 5 - ![RISC-V CPU Microarchitecture](https://www.makerchip.com/sandbox/0kRfnhVBk/01jhPp#)
+A simple  RISC-V CPU supporting a subset of ![RV32I](https://msyksphinz-self.github.io/riscv-isadoc/html/rvi.html) instructions is developed over a course of last two days of the workshop. Firstly a sinlge cycle CPU is developed and later converted into a 4-stage pipelined version solving data hazard and control hazards on the way.
+### Design Diagram
+![diag](images/riscv_diagram.jpg)
+### Show Verilog output
+![sv](images/showverilog_riscv.jpg)
+### Test Program execution(sum from 1 to 9)
