@@ -99,7 +99,7 @@ Output:
 # Day 3 - Introduction Digital Logic with TL-Verilog and Makerchip
 TL-Verilog, which stands for Transaction-Level Verilog, is an extension of the traditional Verilog hardware description language. It was developed to simplify and streamline the process of designing digital circuits by introducing higher-level abstractions and more concise syntax.
 ### ![Arithmetic and Logical Operation in TL-Verilog (simple ALU)](https://www.makerchip.com/sandbox/0kRfnhVBk/03lhy7)
-![alu](images/arithmetic_logic.jpg]
+![alu](images/arithmetic_logic.jpg)
 ![aluw](images/arithmetic_logic_waveform.jpg)
 ### ![Pipelined Distance Calculator](https://www.makerchip.com/sandbox/0kRfnhVBk/02RhBV#)
 ![dist](images/distance.jpg)
@@ -118,3 +118,4 @@ A simple  RISC-V CPU supporting a subset of ![RV32I](https://msyksphinz-self.git
 ### Show Verilog output
 ![sv](images/showverilog_riscv.jpg)
 ### Test Program execution(sum from 1 to 9)
+![sum1to9](images/sum1to9.gif)
