@@ -43,18 +43,9 @@
       @0
          $reset = *reset;
 
-
-
-      // YOUR CODE HERE
-      // ...
-
-      // Note: Because of the magic we are using for visualisation, if visualisation is enabled below,
-      //       be sure to avoid having unassigned signals (which you might be using for random inputs)
-      //       other than those specifically expected in the labs. You'll get strange errors for these.
-
    
    // Assert these to end simulation (before Makerchip cycle limit).
-   *passed = |cpu/xreg[15]>>5$value == (1+2+3+4+5+6+7+8+9);
+   *passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9);
    *failed = 1'b0;
    
    // Macro instantiations for:
@@ -75,7 +66,8 @@
                      >>3$valid_jump && >>3$is_jalr ? >>3$jalr_tgt_pc :
                      >>1$inc_pc;
          
-         
+         //Increment PC
+         $inc_pc[31:0] = $pc + 32'd4;
          /*
          // 3-cycle Valid Signal
          $start = (>>1$reset && !$reset) ? 1'b1 :
@@ -87,8 +79,7 @@
          
          
       @1
-         //Increment PC
-         $inc_pc[31:0] = $pc + 32'd4;
+         
          
          //Instruction Memory Interface
          $imem_rd_en = ! $reset;
@@ -147,8 +138,6 @@
          ?$rd_valid
             $rd[4:0]  = $instr[11:7];
          $opcode[6:0]  = $instr[6:0];
-         
-      @2
          //Decoding Individual Instructions 
          $dec_bits[10:0] = {$funct7[5] ,$funct3, $opcode};
          
@@ -171,8 +160,10 @@
          $is_srli   = $dec_bits ==? 11'b0_101_0010011;
          $is_slti   = $dec_bits ==? 11'bx_010_0010011;
          $is_srai   = $dec_bits ==? 11'b1_101_0010011;
+         $is_addi = $dec_bits ==? 11'bx_000_0010011;
          
          //R-type
+         $is_add = $dec_bits ==? 11'b0_000_0110011;
          $is_sub    = $dec_bits ==? 11'b1_000_0110011;
          $is_sll    = $dec_bits ==? 11'b0_001_0110011;
          $is_slt    = $dec_bits ==? 11'b0_010_0110011;
@@ -199,6 +190,8 @@
          //If Load Instructions
          $is_load   = $opcode == 7'b0000011;
          
+      @2
+         
          //Register File Read
          $rf_rd_en1 = $rs1_valid;
          $rf_rd_index1[4:0] = $rs1;
@@ -209,9 +202,12 @@
          //$src2_value[31:0] = $rf_rd_data2;\
          
          //Result Bypassing
-         $src1_value[31:0] = ( (>>1$rf_wr_index == $rf_rd_index1) && (>>1$rf_rd_en1) ) ? >>1$result :
+         $src1_condition = (>>1$rf_wr_index == $rf_rd_index1) && ($rf_rd_en1);
+         $src2_condition = (>>1$rf_wr_index == $rf_rd_index2) && ($rf_rd_en2);
+         
+         $src1_value[31:0] = ( (>>1$rf_wr_index == $rf_rd_index1) && ($rf_rd_en1) ) ? >>1$result :
                               $rf_rd_data1;
-         $src2_value[31:0] = ( (>>1$rf_wr_index == $rf_rd_index2) && (>>1$rf_rd_en2) ) ? >>1$result :
+         $src2_value[31:0] = ( (>>1$rf_wr_index == $rf_rd_index2) && ($rf_rd_en2) ) ? >>1$result :
                               $rf_rd_data2;
                               
          //Next PC for Branches and Jumps
